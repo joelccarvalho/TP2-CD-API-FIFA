@@ -1,0 +1,38 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '2.2.106'
+
+- task: DotNetCoreCLI@2
+  displayName: "Build"
+  inputs:
+    command: 'build'
+    projects: 'FootballApi.sln'
+    feedsToUse: 'select'
+    versioningScheme: 'off'
+    arguments: '--configuration Release'
+
+- task: DotNetCoreCLI@2
+  displayName: "Run Tests"
+  inputs:
+    command: 'test'
+    projects: 'FootballApi.sln'
+    feedsToUse: 'select'
+    versioningScheme: 'off'

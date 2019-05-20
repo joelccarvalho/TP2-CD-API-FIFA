@@ -1,0 +1,14 @@
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/bin/Debug/netcoreapp2.2/FootballApi.deps.json
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/bin/Debug/netcoreapp2.2/FootballApi.runtimeconfig.json
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/bin/Debug/netcoreapp2.2/FootballApi.runtimeconfig.dev.json
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/bin/Debug/netcoreapp2.2/FootballApi.dll
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/bin/Debug/netcoreapp2.2/FootballApi.pdb
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/obj/Debug/netcoreapp2.2/FootballApi.csprojAssemblyReference.cache
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/obj/Debug/netcoreapp2.2/FootballApi.csproj.CoreCompileInputs.cache
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/obj/Debug/netcoreapp2.2/FootballApi.RazorAssemblyInfo.cache
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/obj/Debug/netcoreapp2.2/FootballApi.RazorAssemblyInfo.cs
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/obj/Debug/netcoreapp2.2/FootballApi.AssemblyInfoInputs.cache
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/obj/Debug/netcoreapp2.2/FootballApi.AssemblyInfo.cs
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/obj/Debug/netcoreapp2.2/FootballApi.RazorTargetAssemblyInfo.cache
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/obj/Debug/netcoreapp2.2/FootballApi.dll
+/Users/joelcarvalho/Desktop/CD/TP2-CD-API-FIFA/FootballApi/obj/Debug/netcoreapp2.2/FootballApi.pdb
