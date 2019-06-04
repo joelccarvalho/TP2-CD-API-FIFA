@@ -25,5 +25,17 @@ namespace FootballApi.Controllers
 
             return Ok(allCountries);
         }
+
+        // GET api/countries/{id}
+        [HttpGet("{id}")]
+        public ActionResult<string> Get(int id)
+        {
+            var country = countryRepository.GetById(id);
+            
+            if (country != null)
+                return Ok(country);
+            else
+                return NoContent();               
+        }
     }
 }

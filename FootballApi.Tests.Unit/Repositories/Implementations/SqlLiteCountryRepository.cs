@@ -16,5 +16,16 @@ namespace FootballApi.Tests.Unit.Repositories.Implementations
 
             Assert.AreEqual(250, allCountries.Count());
         }
+
+        /* [TestMethod]
+        public Task GetById_HappyPath(int id)
+        {
+            var repository = new SqlLiteCountryRepository();
+            var country    = repository.GetById(id);
+
+            Assert.AreEqual(1, country.Count());
+
+            //return id;
+        } */
     }
 }

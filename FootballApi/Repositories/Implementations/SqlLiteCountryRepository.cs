@@ -43,7 +43,27 @@ namespace FootballApi.Repositories.Implementations
 
         public Country GetById(int id)
         {
-            throw new NotImplementedException();
+            using (var connection = SqlLite.GetConnection()) {
+                connection.OpenAsync();
+
+                var selectCommand = connection.CreateCommand();
+                selectCommand.CommandText = "SELECT id, name, slug, code, pop, area FROM countries WHERE id = @id";
+                selectCommand.Parameters.AddWithValue("@id", id);
+
+                using (var reader = selectCommand.ExecuteReader()) {
+                    using (reader.ReadAsync()) {
+                        var country = new Country() {
+                            Id = reader.GetInt64(0),
+                            Name = reader.GetString(1),
+                            Slug = reader.GetString(2),
+                            Code = reader.GetString(3),
+                            Population = reader.GetInt64(4),
+                            Area = reader.GetInt64(5)
+                        };
+                        return country;
+                    }
+                }
+            }
         }
     }
 }

@@ -47,6 +47,34 @@ namespace FootballApi
             }
 
             app.UseHttpsRedirection();
+
+            // Erros gerais
+            app.UseExceptionHandler((appError) => {
+                appError.Run(async (context) => {
+                    var stringBuilder = new System.Text.StringBuilder("This was an error");
+
+                    switch(context.Response.StatusCode) 
+                    {
+                        case 204:
+                            context.Response.StatusCode = 204;
+                            stringBuilder = new System.Text.StringBuilder("Sucesso, sem conteudo!");
+                        break;
+                        case 500:
+                            context.Response.StatusCode = 500;
+                            stringBuilder = new System.Text.StringBuilder("This was an error");
+                        break;
+                        default:
+                            context.Response.StatusCode = 500;
+                            stringBuilder = new System.Text.StringBuilder("Default");
+                            break;
+                        
+                    }
+                    // ANALISAR CONTEXT E MUDAR O ERRO E TEXTO DO ERRO
+                    
+                    var buffer = System.Text.Encoding.UTF8.GetBytes(stringBuilder.ToString());
+                    await context.Response.Body.WriteAsync(buffer);
+                });
+            });
             app.UseMvc();
         }
 
