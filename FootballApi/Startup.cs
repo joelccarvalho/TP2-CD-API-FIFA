@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FootballApi.Errors;
 using FootballApi.Repositories;
 using FootballApi.Repositories.Implementations;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -51,28 +53,23 @@ namespace FootballApi
             // Erros gerais
             app.UseExceptionHandler((appError) => {
                 appError.Run(async (context) => {
-                    var stringBuilder = new System.Text.StringBuilder("This was an error");
 
-                    switch(context.Response.StatusCode) 
-                    {
-                        case 204:
-                            context.Response.StatusCode = 204;
-                            stringBuilder = new System.Text.StringBuilder("Sucesso, sem conteudo!");
-                        break;
-                        case 500:
-                            context.Response.StatusCode = 500;
-                            stringBuilder = new System.Text.StringBuilder("This was an error");
-                        break;
-                        default:
-                            context.Response.StatusCode = 500;
-                            stringBuilder = new System.Text.StringBuilder("Default");
-                            break;
-                        
+                    var exceptionHandlerPathFeature = 
+                        context.Features.Get<IExceptionHandlerPathFeature>();
+
+                    string errorMessage;
+                    if (exceptionHandlerPathFeature?.Error is BaseException) {
+                        BaseException exception = exceptionHandlerPathFeature.Error as BaseException;
+                        context.Response.StatusCode = exception.StatusCode;
+                        errorMessage = exception.Message;
+                    } else {
+                        errorMessage = "Unknown Error";
                     }
-                    // ANALISAR CONTEXT E MUDAR O ERRO E TEXTO DO ERRO
-                    
-                    var buffer = System.Text.Encoding.UTF8.GetBytes(stringBuilder.ToString());
+
+
+                    var buffer = System.Text.Encoding.UTF8.GetBytes(errorMessage);
                     await context.Response.Body.WriteAsync(buffer);
+
                 });
             });
             app.UseMvc();
@@ -82,6 +79,8 @@ namespace FootballApi
         {
             // Could be used to register more types
             container.RegisterType<ICountryRepository, SqlLiteCountryRepository>();
+            container.RegisterType<IGameRepository, SqlLiteGameRepository>();
+
         }
     }
 }

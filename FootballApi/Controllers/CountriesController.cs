@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FootballApi.Errors;
 using FootballApi.Models;
 using FootballApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,7 @@ namespace FootballApi.Controllers
             if (country != null)
                 return Ok(country);
             else
-                return NoContent();               
+                throw new NoContentException("Country");               
         }
     }
 }
