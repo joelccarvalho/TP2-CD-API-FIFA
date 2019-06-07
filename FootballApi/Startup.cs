@@ -80,6 +80,8 @@ namespace FootballApi
             // Could be used to register more types
             container.RegisterType<ICountryRepository, SqlLiteCountryRepository>();
             container.RegisterType<IGameRepository, SqlLiteGameRepository>();
+            container.RegisterType<IPlayerRepository, SqlLitePlayerRepository>();
+
 
         }
     }
