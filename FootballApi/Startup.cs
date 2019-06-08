@@ -81,6 +81,7 @@ namespace FootballApi
             container.RegisterType<ICountryRepository, SqlLiteCountryRepository>();
             container.RegisterType<IGameRepository, SqlLiteGameRepository>();
             container.RegisterType<IPlayerRepository, SqlLitePlayerRepository>();
+            container.RegisterType<IGoalRepository, SqlLiteGoalRepository>();
 
 
         }

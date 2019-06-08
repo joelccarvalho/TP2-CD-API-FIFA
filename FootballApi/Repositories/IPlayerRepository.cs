@@ -14,5 +14,6 @@ namespace FootballApi.Repositories
         Task<IEnumerable<Player>> GetAll();
         Player GetById(int id);
         void Add(Player product);
+        //Player InsertPlayer(string key, string name, DateTime created_at, DateTime updated_at); ??
     }
 }

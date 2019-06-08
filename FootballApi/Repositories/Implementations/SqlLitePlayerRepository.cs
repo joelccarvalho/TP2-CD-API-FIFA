@@ -46,5 +46,34 @@ namespace FootballApi.Repositories.Implementations
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<Player>> InsertPlayer(string key, string name, DateTime created_at, DateTime updated_at)
+        {
+            var playerInserted = new List<Player>();
+            using (var connection = SqlLite.GetConnection())
+            {
+                await connection.OpenAsync();
+
+                var selectCommand = connection.CreateCommand();
+                selectCommand.CommandText = "INSERT INTO persons (key, name, created_at,updated_at) VALUES("+key+", "+name+", "+created_at+", "+updated_at+")";
+
+                //using (var reader = await selectCommand.ExecuteReaderAsync())    É preciso?
+                //{
+                //    while (await reader.ReadAsync())
+                //    {
+                //        var player = new Player()
+                //        {
+                //            Id = reader.GetInt64(0),
+                //            key = reader.GetString(1),
+                //            Name = reader.GetString(2),
+                //        };
+
+                //        playerInserted.Add(player);
+                //    }
+                //}
+            };
+
+            return playerInserted;
+        }
     }
 }
