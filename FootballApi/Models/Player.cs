@@ -14,7 +14,7 @@ namespace FootballApi.Models
         }
 
         /// <summary>
-        /// Gets the Country Name
+        /// Gets the Player Name
         /// </summary>
         /// <value>Name of the Player</value>
         public string Name
@@ -23,10 +23,28 @@ namespace FootballApi.Models
         }
 
         /// <summary>
-        /// Gets the Country Name
+        /// Gets the Player Key
         /// </summary>
-        /// <value>key of the Player</value>
-        public string key
+        /// <value>Key of the Player</value>
+        public string Key
+        {
+            get; internal set;
+        }
+
+        /// <summary>
+        /// Gets the Player Create_At
+        /// </summary>
+        /// <value>Create_At of the Player</value>
+        public string Create_At
+        {
+            get; internal set;
+        }
+
+        /// <summary>
+        /// Gets the Player Updated_At
+        /// </summary>
+        /// <value>Updated_At of the Player</value>
+        public string Updated_At
         {
             get; internal set;
         }

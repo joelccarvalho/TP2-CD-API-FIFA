@@ -17,7 +17,8 @@ namespace FootballApi.Controllers
         {
             this.playerRepository = playerRepository;
         }
-        // GET api/countries
+
+        // GET api/players
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> Get()
         {
@@ -26,19 +27,19 @@ namespace FootballApi.Controllers
             return Ok(allPlayers);
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult<IEnumerable<Player>>> Post()
-        //{
-        //    string key = "";
-        //    string name="" ;
-        //    DateTime created_at= DateTime.Now;
-        //    DateTime updated_at = DateTime.Now;
+        // POST api/players
+        [HttpPost]
+        public async Task<ActionResult<Player>> Post()
+        {
+            var player = new Player();
+            player.Name = "Novo Jogador";
+            player.Key = "novo jogador";
+            player.Create_At = "2019-05-11 08:35:44.724566";
+            player.Updated_At = "2019-05-11 08:35:44.724566";
+            
+            var insertplayer = await playerRepository.AddPlayer(player);
 
-        //    var insertplayer = await playerRepository.InsertPlayer("12","12",DateTime.Now, DateTime.Now); da erro
-
-        //    return Created(insertplayer);
-        //}
-
-
+            return Ok(insertplayer);
+        }
     }
 }

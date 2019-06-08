@@ -9,9 +9,9 @@ namespace FootballApi.Repositories.Implementations
 {
     public class SqlLitePlayerRepository : IPlayerRepository
     {
-        public void Add(Player product)
+        public void Add(Player player)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public async Task<IEnumerable<Player>> GetAll()
@@ -31,7 +31,7 @@ namespace FootballApi.Repositories.Implementations
                         var player = new Player()
                         {
                             Id = reader.GetInt64(0),
-                            key = reader.GetString(1),
+                            Key = reader.GetString(1),
                             Name = reader.GetString(2),
                         };
 
@@ -47,33 +47,27 @@ namespace FootballApi.Repositories.Implementations
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Player>> InsertPlayer(string key, string name, DateTime created_at, DateTime updated_at)
+        public async Task<Player> AddPlayer(Player player)
         {
-            var playerInserted = new List<Player>();
             using (var connection = SqlLite.GetConnection())
             {
-                await connection.OpenAsync();
+                await connection.OpenAsync(); // Open async connection
 
                 var selectCommand = connection.CreateCommand();
-                selectCommand.CommandText = "INSERT INTO persons (key, name, created_at,updated_at) VALUES("+key+", "+name+", "+created_at+", "+updated_at+")";
 
-                //using (var reader = await selectCommand.ExecuteReaderAsync())    É preciso?
-                //{
-                //    while (await reader.ReadAsync())
-                //    {
-                //        var player = new Player()
-                //        {
-                //            Id = reader.GetInt64(0),
-                //            key = reader.GetString(1),
-                //            Name = reader.GetString(2),
-                //        };
+                // Query parameterized
+                selectCommand.CommandText = "INSERT INTO persons (name, key, created_at, updated_at) VALUES(@name, @key, @created_at, @updated_at)";
+                
+                // Add parameters to query
+                selectCommand.Parameters.AddWithValue("@name", player.Name);
+                selectCommand.Parameters.AddWithValue("@key", player.Key);
+                selectCommand.Parameters.AddWithValue("@created_at", player.Create_At);
+                selectCommand.Parameters.AddWithValue("@updated_at", player.Updated_At);
 
-                //        playerInserted.Add(player);
-                //    }
-                //}
-            };
-
-            return playerInserted;
+                selectCommand.ExecuteNonQuery(); // Run query
+                
+                return player; // Return player inserted
+            };            
         }
     }
 }
