@@ -36,7 +36,7 @@ namespace FootballApi.Controllers
             if (country != null)
                 return Ok(country);
             else
-                throw new NoContentException("Country");               
+                throw new NotFoundException("Country Id:" + id.ToString()); // Id not found    
         }
     }
 }

@@ -69,5 +69,52 @@ namespace FootballApi.Repositories.Implementations
                 return player; // Return player inserted
             };            
         }
+
+        public async Task<Int64> UpdatePlayer(Player player)
+        {
+            using (var connection = SqlLite.GetConnection())
+            {
+                await connection.OpenAsync(); // Open async connection
+
+                var selectCommand = connection.CreateCommand();
+
+                // Query parameterized
+                selectCommand.CommandText = "UPDATE persons SET name = @name WHERE id = @id";
+                
+                // Add parameters to query
+                selectCommand.Parameters.AddWithValue("@id", player.Id);
+                selectCommand.Parameters.AddWithValue("@name", player.Name);
+
+                var reader = selectCommand.ExecuteNonQuery(); // Run query
+
+                if(reader == 1)
+                    return 1; // Return success
+                else
+                    return 0; // Return insuccess
+            };            
+        }
+
+        public async Task<Int64> DeletePlayer(int id)
+        {
+            using (var connection = SqlLite.GetConnection())
+            {
+                await connection.OpenAsync(); // Open async connection
+
+                var selectCommand = connection.CreateCommand();
+
+                // Query parameterized
+                selectCommand.CommandText = "DELETE FROM persons WHERE id = @id";
+                
+                // Add parameters to query
+                selectCommand.Parameters.AddWithValue("@id", id);
+
+                var reader = selectCommand.ExecuteNonQuery(); // Run query
+
+                if(reader == 1)
+                    return 1; // Return success
+                else
+                    return 0; // Return insuccess
+            };            
+        }
     }
 }

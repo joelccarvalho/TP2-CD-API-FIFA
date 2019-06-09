@@ -14,5 +14,7 @@ namespace FootballApi.Repositories
         Task<IEnumerable<Player>> GetAll();
         Player GetById(int id);
         Task<Player> AddPlayer(Player player); 
+        Task<Int64> UpdatePlayer(Player player); 
+        Task<Int64> DeletePlayer(int id); 
     }
 }
