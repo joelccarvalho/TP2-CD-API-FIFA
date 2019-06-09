@@ -37,5 +37,41 @@ namespace FootballApi.Repositories.Implementations
 
             return listOfGame;
         }
+
+        public async Task<Game> AddGame(Game game)
+        {
+            using (var connection = SqlLite.GetConnection())
+            {
+                await connection.OpenAsync(); // Open async connection
+
+                var selectCommand = connection.CreateCommand();
+
+                // Query parameterized
+                selectCommand.CommandText = "INSERT INTO games (round_id, pos, team1_id, team2_id, play_at, postponed, knockout, home, score1, score2, score1i, score2i, winner, winner90, created_at, updated_at) " + 
+                "VALUES(@round_id, @pos, @team1_id, @team2_id, @play_at, @postponed, @knockout, @home, @score1, @score2, @score1i, @score2i, @winner, @winner90, @created_at, @updated_at)";
+                
+                // Add parameters to query
+                selectCommand.Parameters.AddWithValue("@round_id", game.RoundId);
+                selectCommand.Parameters.AddWithValue("@pos", game.Pos);
+                selectCommand.Parameters.AddWithValue("@team1_id", game.Team_1);
+                selectCommand.Parameters.AddWithValue("@team2_id", game.Team_2);
+                selectCommand.Parameters.AddWithValue("@play_at", game.Play_At);
+                selectCommand.Parameters.AddWithValue("@postponed", game.Postponed);
+                selectCommand.Parameters.AddWithValue("@knockout", game.Knockout);
+                selectCommand.Parameters.AddWithValue("@home", game.Home);
+                selectCommand.Parameters.AddWithValue("@score1", game.Score1);
+                selectCommand.Parameters.AddWithValue("@score2", game.Score2);
+                selectCommand.Parameters.AddWithValue("@score1i", game.Score1i);
+                selectCommand.Parameters.AddWithValue("@score2i", game.Score2i);
+                selectCommand.Parameters.AddWithValue("@winner", game.Winner);
+                selectCommand.Parameters.AddWithValue("@winner90", game.Winner90);
+                selectCommand.Parameters.AddWithValue("@created_at", game.Create_At);
+                selectCommand.Parameters.AddWithValue("@updated_at", game.Updated_At);
+
+                var reader = selectCommand.ExecuteNonQuery(); // Run query
+                
+                return game; // Return game inserted
+            };            
+        }
     }
 }

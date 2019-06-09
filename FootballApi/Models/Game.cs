@@ -57,8 +57,98 @@ namespace FootballApi.Models
         /// <summary>
         /// Gets the Play At
         /// </summary>
-        /// <value>Play At Id of the game</value>
+        /// <value>Play At of the game</value>
         public DateTime Play_At {
+            get; internal set;
+        }
+        
+        /// <summary>
+        /// Gets the Postponed
+        /// </summary>
+        /// <value>Postponed of the game</value>
+        public Boolean Postponed {
+            get; internal set;
+        }
+        
+        /// <summary>
+        /// Gets the Knockout
+        /// </summary>
+        /// <value>Knockout of the game</value>
+        public Boolean Knockout {
+            get; internal set;
+        }
+
+        /// <summary>
+        /// Gets the Home
+        /// </summary>
+        /// <value>Home of the game</value>
+        public Boolean Home {
+            get; internal set;
+        }
+
+        /// <summary>
+        /// Gets the Score1
+        /// </summary>
+        /// <value>Score1 of the game</value>
+        public int Score1 {
+            get; internal set;
+        }
+
+        /// <summary>
+        /// Gets the Score2
+        /// </summary>
+        /// <value>Score2 of the game</value>
+        public int Score2 {
+            get; internal set;
+        }
+
+        /// <summary>
+        /// Gets the Score1i
+        /// </summary>
+        /// <value>Score1i of the game</value>
+        public int Score1i {
+            get; internal set;
+        }
+
+        /// <summary>
+        /// Gets the Score2i
+        /// </summary>
+        /// <value>Score2i of the game</value>
+        public int Score2i {
+            get; internal set;
+        }
+
+        /// <summary>
+        /// Gets the Winner
+        /// </summary>
+        /// <value>Winner of the game</value>
+        public int Winner {
+            get; internal set;
+        }
+
+        /// <summary>
+        /// Gets the Winner90
+        /// </summary>
+        /// <value>Winner90 of the game</value>
+        public int Winner90 {
+            get; internal set;
+        }
+
+        /// <summary>
+        /// Gets the Player Create_At
+        /// </summary>
+        /// <value>Create_At of the Player</value>
+        public string Create_At
+        {
+            get; internal set;
+        }
+
+        /// <summary>
+        /// Gets the Player Updated_At
+        /// </summary>
+        /// <value>Updated_At of the Player</value>
+        public string Updated_At
+        {
             get; internal set;
         }
     }

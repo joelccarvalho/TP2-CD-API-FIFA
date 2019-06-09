@@ -9,5 +9,6 @@ namespace FootballApi.Repositories
     public interface IGameRepository
     {
         Task<IEnumerable<Game>> GetAll();
+        Task<Game> AddGame(Game game); 
     } 
 }
