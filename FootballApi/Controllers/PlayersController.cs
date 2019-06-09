@@ -31,13 +31,14 @@ namespace FootballApi.Controllers
 
         // POST api/players
         [HttpPost]
-        public async Task<ActionResult<Player>> Post()
+        public async Task<ActionResult<Player>> Post([FromBody]Player p)
         {
+            // Assign values from the body
             var player        = new Player();
-            player.Name       = "New Player";
-            player.Key        = "new player";
-            player.Create_At  = "2019-05-11 08:35:44.724566";
-            player.Updated_At = "2019-05-11 08:35:44.724566";
+            player.Name       = p.Name;
+            player.Key        = p.Key;
+            player.Create_At  = p.Create_At;
+            player.Updated_At = p.Updated_At;
             
             var insertplayer = await playerRepository.AddPlayer(player);
 
@@ -46,13 +47,14 @@ namespace FootballApi.Controllers
 
         // PATCH api/players/{id}
         [HttpPatch("{id}")]
-        public async Task<ActionResult<Int64>> Patch(int id)
+        public async Task<ActionResult<Int64>> Patch(int id, [FromBody]Player p)
         {
+            // Assign values from the body
             var player  = new Player();
             player.Id   = id;
-            player.Name = "Player updated";
+            player.Name = p.Name;
             
-            var updateplayer = await playerRepository.UpdatePlayer(player);
+            var updateplayer = await playerRepository.UpdatePlayer(id, player);
             
             if(updateplayer == 1)
             {

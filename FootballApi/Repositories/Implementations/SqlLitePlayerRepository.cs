@@ -70,7 +70,7 @@ namespace FootballApi.Repositories.Implementations
             };            
         }
 
-        public async Task<Int64> UpdatePlayer(Player player)
+        public async Task<Int64> UpdatePlayer(int id, Player player)
         {
             using (var connection = SqlLite.GetConnection())
             {

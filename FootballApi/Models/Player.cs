@@ -10,7 +10,7 @@ namespace FootballApi.Models
     {
         public long Id
         {
-            get; internal set;
+            get; set;
         }
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace FootballApi.Models
         /// <value>Name of the Player</value>
         public string Name
         {
-            get; internal set;
+            get; set;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace FootballApi.Models
         /// <value>Key of the Player</value>
         public string Key
         {
-            get; internal set;
+            get; set;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace FootballApi.Models
         /// <value>Create_At of the Player</value>
         public string Create_At
         {
-            get; internal set;
+            get; set;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace FootballApi.Models
         /// <value>Updated_At of the Player</value>
         public string Updated_At
         {
-            get; internal set;
+            get; set;
         }
     }
 }
