@@ -36,7 +36,7 @@ namespace FootballApi.Controllers
             if (goal != null)
                 return Ok(goal);
             else
-                throw new NoContentException("goal");
+                throw new NotFoundException("Name:" + name); // Name not found    
         }
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FootballApi.Errors;
+using FootballApi.General;
 using FootballApi.Models;
 using FootballApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +33,14 @@ namespace FootballApi.Controllers
         // POST api/players
         [HttpPost]
         public async Task<ActionResult<Player>> Post([FromBody]Player p)
-        {
+        {       
+            bool areAllPropertiesNotNull = p.ArePropertiesNotNull();
+
+            // Any property is null
+            if(!areAllPropertiesNotNull) {
+                throw new BadRequestException("Properties can not be null");
+            } 
+
             // Assign values from the body
             var player        = new Player();
             player.Name       = p.Name;
@@ -49,6 +57,12 @@ namespace FootballApi.Controllers
         [HttpPatch("{id}")]
         public async Task<ActionResult<Int64>> Patch(int id, [FromBody]Player p)
         {
+
+            // Name is null
+            if(p.Name == null) {
+                throw new BadRequestException("Properties can not be null");
+            } 
+
             // Assign values from the body
             var player  = new Player();
             player.Id   = id;
@@ -56,6 +70,7 @@ namespace FootballApi.Controllers
             
             var updateplayer = await playerRepository.UpdatePlayer(id, player);
             
+            // Success
             if(updateplayer == 1)
             {
                 Dictionary<string, string> dict = new Dictionary<string, string>();
