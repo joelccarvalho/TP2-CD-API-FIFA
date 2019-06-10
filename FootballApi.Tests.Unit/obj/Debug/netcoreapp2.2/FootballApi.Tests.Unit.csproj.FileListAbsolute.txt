@@ -21,3 +21,14 @@ C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\obj\Debug\net
 C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\obj\Debug\netcoreapp2.2\FootballApi.Tests.Unit.AssemblyInfo.cs
 C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\obj\Debug\netcoreapp2.2\FootballApi.Tests.Unit.dll
 C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\obj\Debug\netcoreapp2.2\FootballApi.Tests.Unit.pdb
+C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\bin\Debug\netcoreapp2.2\FootballApi.Tests.Unit.deps.json
+C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\bin\Debug\netcoreapp2.2\FootballApi.Tests.Unit.runtimeconfig.json
+C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\bin\Debug\netcoreapp2.2\FootballApi.Tests.Unit.runtimeconfig.dev.json
+C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\bin\Debug\netcoreapp2.2\FootballApi.Tests.Unit.dll
+C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\bin\Debug\netcoreapp2.2\FootballApi.Tests.Unit.pdb
+C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\bin\Debug\netcoreapp2.2\FootballApi.dll
+C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\bin\Debug\netcoreapp2.2\FootballApi.pdb
+C:\Users\Utilizador\Desktop\TP2-CD-API-FIFA\FootballApi.Tests.Unit\obj\Debug\netcoreapp2.2\FootballApi.Tests.Unit.csproj.CopyComplete

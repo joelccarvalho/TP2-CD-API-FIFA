@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FootballApi.Errors;
+using FootballApi.General;
 using FootballApi.Models;
 using FootballApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
-
+using Newtonsoft.Json;
 namespace FootballApi.Controllers
 {
     [Route("api/[controller]")]
@@ -39,6 +40,13 @@ namespace FootballApi.Controllers
             if(result >= 0) {
                 throw new BadRequestException("The date should be later than today");
             }
+
+             bool areAllPropertiesNotNull = g.ArePropertiesNotNull();
+
+            // Any property is null
+            if(!areAllPropertiesNotNull) {
+                throw new BadRequestException("Properties can not be null");
+            } 
 
             var game        = new Game();
             game.RoundId    = g.RoundId;

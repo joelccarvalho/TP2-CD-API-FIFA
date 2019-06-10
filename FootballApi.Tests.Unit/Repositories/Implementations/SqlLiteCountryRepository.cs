@@ -15,17 +15,17 @@ namespace FootballApi.Tests.Unit.Repositories.Implementations
             var allCountries = await repository.GetAll();
 
             Assert.AreEqual(250, allCountries.Count());
-        }
 
-        /* [TestMethod]
-        public Task GetById_HappyPath(int id)
+        }
+        [TestMethod]
+        public void GetById_HappyPath()
         {
             var repository = new SqlLiteCountryRepository();
-            var country    = repository.GetById(id);
 
-            Assert.AreEqual(1, country.Count());
+            var countryById = repository.GetById(1);
+            Assert.AreEqual(1, countryById.Id);//sera assim?
+        }
 
-            //return id;
-        } */
+
     }
 }
