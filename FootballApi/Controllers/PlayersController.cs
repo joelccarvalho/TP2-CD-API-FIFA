@@ -29,6 +29,18 @@ namespace FootballApi.Controllers
             return Ok(allPlayers);
         }
 
+        // GET api/player/{id}
+        [HttpGet("{id}")]
+        public ActionResult<string> Get(int id)
+        {
+            var player = playerRepository.GetById(id);
+
+            if (player != null)
+                return Ok(player);
+            else
+                throw new NotFoundException("Country Id:" + id.ToString()); // Id not found    
+        }
+
         // POST api/players
         [HttpPost]
         public async Task<ActionResult<Player>> Post([FromBody]Player p)

@@ -44,7 +44,35 @@ namespace FootballApi.Repositories.Implementations
         }
         public Player GetById(int id)
         {
-            throw new NotImplementedException();
+            using (var connection = SqlLite.GetConnection())
+            {
+                connection.OpenAsync();
+
+                var selectCommand = connection.CreateCommand();
+                selectCommand.CommandText = "SELECT id, key, name FROM persons WHERE id = @id";
+                selectCommand.Parameters.AddWithValue("@id", id);
+
+                using (var reader = selectCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        using (reader.ReadAsync())
+                        {
+                            var player = new Player()
+                            {
+                                Id = reader.GetInt64(0),
+                                Key = reader.GetString(1),
+                                Name = reader.GetString(2),
+                            };
+                            return player;
+                        }
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
         }
 
         public async Task<Player> AddPlayer(Player player)
