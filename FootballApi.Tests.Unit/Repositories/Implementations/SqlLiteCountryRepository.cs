@@ -11,21 +11,21 @@ namespace FootballApi.Tests.Unit.Repositories.Implementations
         [TestMethod]
         public async Task GetAll_HappyPath()
         {
-            var repository = new SqlLiteCountryRepository();
+            var repository   = new SqlLiteCountryRepository();
             var allCountries = await repository.GetAll();
 
             Assert.AreEqual(250, allCountries.Count());
 
         }
+
         [TestMethod]
         public void GetById_HappyPath()
         {
-            var repository = new SqlLiteCountryRepository();
+            var repository  = new SqlLiteCountryRepository();
 
             var countryById = repository.GetById(1);
-            Assert.AreEqual(1, countryById.Id);//sera assim?
+
+            Assert.AreEqual(1, countryById.Id);
         }
-
-
     }
 }
