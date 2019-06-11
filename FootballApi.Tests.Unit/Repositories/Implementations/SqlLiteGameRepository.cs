@@ -48,6 +48,24 @@ namespace FootballApi.Tests.Unit.Repositories.Implementations
 
             Assert.AreEqual(game.RoundId, addGame.RoundId); 
         }
+
+
+        [TestMethod]
+        public async Task StartGame_HappyPath()
+        {
+            var repository = new SqlLiteGameRepository();
+            
+            DateTime startingDate = DateTime.Parse("2019-06-11 20:00:00");
+
+            var game     = new Game();
+            game.Id      = 1;
+            game.Play_At = startingDate;
+
+            var StartingGame = await repository.StartGame((int)(game.Id), game);
+
+            Assert.AreEqual(1, StartingGame);
+        }
+
     }
 
 }

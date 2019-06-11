@@ -71,5 +71,40 @@ namespace FootballApi.Controllers
 
             return Ok(insertGame);
         }
+
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<Int64>> Patch(int id, [FromBody]Game g)
+        {
+
+            // Name is null
+            if (g.Play_At == null)
+            {
+                throw new BadRequestException("Properties can not be null");
+            }
+
+           // DateTime startDate = new DateTime;
+            DateTime startingDate = g.Play_At;
+
+            // Assign values from the body
+            var game = new Game();
+            game.Id = id;
+            game.Play_At = startingDate;
+
+            var updateplayer = await gameRepository.StartGame(id, game);
+
+            // Success
+            if (updateplayer == 1)
+            {
+                Dictionary<string, string> dict = new Dictionary<string, string>();
+
+                // Beauty response
+                dict.Add("Status", "Success");
+                dict.Add("Results", "Game " + game.Id + " started");
+                return Ok(JsonConvert.SerializeObject(dict));
+            }
+            else
+                throw new NotFoundException("Game Id:" + game.Id.ToString()); // Id not found
+        }
     }
 }

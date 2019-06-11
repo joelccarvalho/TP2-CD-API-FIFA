@@ -73,5 +73,29 @@ namespace FootballApi.Repositories.Implementations
                 return game; // Return game inserted
             };            
         }
+
+        public async Task<Int64> StartGame(int id, Game game)
+        {
+            using (var connection = SqlLite.GetConnection())
+            {
+                await connection.OpenAsync(); // Open async connection
+
+                var selectCommand = connection.CreateCommand();
+
+                // Query parameterized
+                selectCommand.CommandText = "UPDATE games SET play_At = @play_at WHERE id = @id";
+
+                // Add parameters to query
+                selectCommand.Parameters.AddWithValue("@id", game.Id);
+                selectCommand.Parameters.AddWithValue("@play_at", game.Play_At);
+
+                var reader = selectCommand.ExecuteNonQuery(); // Run query
+
+                if (reader == 1)
+                    return 1; // Return success
+                else
+                    return 0; // Return insuccess
+            };
+        }
     }
 }
