@@ -39,7 +39,7 @@ namespace FootballApi.Controllers
             if (player != null)
                 return Ok(player);
             else
-                throw new NotFoundException("Country Id:" + id.ToString()); // Id not found    
+                throw new NotFoundException("Player Id:" + id.ToString()); // Id not found    
         }
 
         // POST api/players
