@@ -16,7 +16,8 @@ namespace FootballApi.Repositories.Implementations
                 await connection.OpenAsync();
 
                 var selectCommand = connection.CreateCommand();
-                selectCommand.CommandText = "SELECT id, round_id, pos, group_id, team1_id, team2_id, play_at FROM games";
+                selectCommand.CommandText = "SELECT id, round_id, pos, group_id, team1_id, team2_id, play_at, "+
+                "postponed, knockout, home, score1, score2, score1i, score2i, winner, winner90, created_at, updated_at FROM games";
                 
                 using (var reader = await selectCommand.ExecuteReaderAsync()) {
                     while (await reader.ReadAsync()) {
@@ -27,7 +28,18 @@ namespace FootballApi.Repositories.Implementations
                             GroupId = reader.Get<long>(3, 0),
                             Team_1 = reader.GetInt32(4),
                             Team_2 = reader.GetInt32(5),
-                            Play_At = reader.GetDateTime(6)
+                            Play_At = reader.GetDateTime(6),
+                            Postponed = reader.GetBoolean(7),
+                            Knockout = reader.GetBoolean(8),
+                            Home = reader.GetBoolean(9),
+                            Score1 = reader.GetInt32(10),
+                            Score2 = reader.GetInt32(11),
+                            Score1i = reader.GetInt32(12),
+                            Score2i = reader.GetInt32(13),
+                            Winner = reader.GetInt32(14),
+                            Winner90 = reader.GetInt32(15),
+                            Create_At = reader.GetString(16),
+                            Updated_At = reader.GetString(17)
                         };
 
                         listOfGame.Add(game);
@@ -88,6 +100,55 @@ namespace FootballApi.Repositories.Implementations
                 // Add parameters to query
                 selectCommand.Parameters.AddWithValue("@id", game.Id);
                 selectCommand.Parameters.AddWithValue("@play_at", game.Play_At);
+
+                var reader = selectCommand.ExecuteNonQuery(); // Run query
+
+                if (reader == 1)
+                    return 1; // Return success
+                else
+                    return 0; // Return insuccess
+            };
+        }
+
+        public async Task<Int64> ScoreGoal(int id, Game game)
+        {
+            using (var connection = SqlLite.GetConnection())
+            {
+                await connection.OpenAsync(); // Open async connection
+
+                var selectCommand = connection.CreateCommand();
+
+                // Query parameterized
+                selectCommand.CommandText = "UPDATE games SET score1 = @score1 WHERE id = @id";
+
+                // Add parameters to query
+                selectCommand.Parameters.AddWithValue("@id", game.Id);
+                selectCommand.Parameters.AddWithValue("@score1", game.Score1);
+
+                var reader = selectCommand.ExecuteNonQuery(); // Run query
+
+                if (reader == 1)
+                    return 1; // Return success
+                else
+                    return 0; // Return insuccess
+            };
+        }
+
+        public async Task<Int64> EndGame(int id, Game game)
+        {
+            using (var connection = SqlLite.GetConnection())
+            {
+                await connection.OpenAsync(); // Open async connection
+
+                var selectCommand = connection.CreateCommand();
+
+                // Query parameterized
+                selectCommand.CommandText = "UPDATE games SET winner = @winner, winner90 = @winner90 WHERE id = @id";
+
+                // Add parameters to query
+                selectCommand.Parameters.AddWithValue("@id", game.Id);
+                selectCommand.Parameters.AddWithValue("@winner", game.Winner);
+                selectCommand.Parameters.AddWithValue("@winner90", game.Winner90);
 
                 var reader = selectCommand.ExecuteNonQuery(); // Run query
 

@@ -66,6 +66,35 @@ namespace FootballApi.Tests.Unit.Repositories.Implementations
             Assert.AreEqual(1, StartingGame);
         }
 
+        [TestMethod]
+        public async Task ScoreGoal_HappyPath()
+        {
+            var repository = new SqlLiteGameRepository();
+
+            var game     = new Game();
+            game.Id      = 1;
+            game.Score1  = 2;
+
+            var ScoreGoal = await repository.ScoreGoal((int)(game.Id), game);
+
+            Assert.AreEqual(1, ScoreGoal);
+        }
+
+        [TestMethod]
+        public async Task EndGame_HappyPath()
+        {
+            var repository = new SqlLiteGameRepository();
+
+            var game       = new Game();
+            game.Id        = 1;
+            game.Winner    = 2;
+            game.Winner90  = 2;
+
+            var EndGame = await repository.ScoreGoal((int)(game.Id), game);
+
+            Assert.AreEqual(1, EndGame);
+        }
+
     }
 
 }

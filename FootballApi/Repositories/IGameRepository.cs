@@ -13,7 +13,7 @@ namespace FootballApi.Repositories
         Task<IEnumerable<Game>> GetAll();
         Task<Game> AddGame([FromBody]Game game);
         Task<Int64> StartGame(int id, [FromBody]Game game);
-
-        
+        Task<Int64> ScoreGoal(int id, [FromBody]Game game); 
+        Task<Int64> EndGame(int id, [FromBody]Game game); 
     } 
 }

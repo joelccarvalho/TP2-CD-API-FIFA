@@ -72,23 +72,22 @@ namespace FootballApi.Controllers
             return Ok(insertGame);
         }
 
-
-        [HttpPatch("{id}")]
-        public async Task<ActionResult<Int64>> Patch(int id, [FromBody]Game g)
+        // POST api/games/{id}/startGame
+        [HttpPost("{id}/startGame")]
+        public async Task<ActionResult<Int64>> StartGame(int id, [FromBody]Game g)
         {
-
             // Name is null
             if (g.Play_At == null)
             {
                 throw new BadRequestException("Properties can not be null");
             }
 
-           // DateTime startDate = new DateTime;
+            // DateTime startDate = new DateTime;
             DateTime startingDate = g.Play_At;
 
             // Assign values from the body
-            var game = new Game();
-            game.Id = id;
+            var game     = new Game();
+            game.Id      = id;
             game.Play_At = startingDate;
 
             var updateplayer = await gameRepository.StartGame(id, game);
@@ -101,6 +100,72 @@ namespace FootballApi.Controllers
                 // Beauty response
                 dict.Add("Status", "Success");
                 dict.Add("Results", "Game " + game.Id + " started");
+                return Ok(JsonConvert.SerializeObject(dict));
+            }
+            else
+                throw new NotFoundException("Game Id:" + game.Id.ToString()); // Id not found
+        }
+
+        // POST api/games/{id}/scoreGoal
+        [HttpPost("{id}/scoreGoal")]
+        public async Task<ActionResult<Int64>> ScoreGoal(int id, [FromBody]Game g)
+        {
+            // Score1 is 0 or negative
+            if (g.Score1 <= 0)
+            {
+                throw new BadRequestException("Score1 can not be zero or negative");
+            }
+
+            // Assign values from the body
+            var game     = new Game();
+            game.Id      = id;
+            game.Score1  = g.Score1;
+
+            var updateplayer = await gameRepository.ScoreGoal(id, game);
+
+            // Success
+            if (updateplayer == 1)
+            {
+                Dictionary<string, string> dict = new Dictionary<string, string>();
+
+                // Beauty response
+                dict.Add("Status", "Success");
+                dict.Add("Results", "Team1 score a goal!! Game ID:" + game.Id);
+                return Ok(JsonConvert.SerializeObject(dict));
+            }
+            else
+                throw new NotFoundException("Game Id:" + game.Id.ToString()); // Id not found
+        }
+
+        // POST api/games/{id}/endGame
+        [HttpPost("{id}/endGame")]
+        public async Task<ActionResult<Int64>> EndGame(int id, [FromBody]Game g)
+        {
+            // Winner and Winner90 are null
+            if (g.Winner.ToString() == null || g.Winner90.ToString() == null)
+            {
+                throw new BadRequestException("Winner or Winner90 can not be null");
+            }
+            else if((g.Winner < 1 || g.Winner > 2)|| (g.Winner90 < 1 || g.Winner90 > 2)){
+                throw new BadRequestException("Only exits two teams!");
+            }
+
+            // Assign values from the body
+            var game       = new Game();
+            game.Id        = id;
+            game.Winner    = g.Winner;
+            game.Winner90  = g.Winner90;
+
+            var updateplayer = await gameRepository.EndGame(id, game);
+
+            // Success
+            if (updateplayer == 1)
+            {
+                Dictionary<string, string> dict = new Dictionary<string, string>();
+
+                // Beauty response
+                dict.Add("Status", "Success");
+                dict.Add("Results", "Team ID: "+ game.Winner+ " Winner! ");
                 return Ok(JsonConvert.SerializeObject(dict));
             }
             else
