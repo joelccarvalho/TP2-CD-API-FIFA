@@ -19,13 +19,12 @@ namespace FootballApi.Tests.Unit.Repositories.Implementations
         }
 
         [TestMethod]
-        public void GetById_HappyPath()
+        public async Task GetById_HappyPath()
         {
-            var repository  = new SqlLiteCountryRepository();
+            var repository   = new SqlLiteCountryRepository();
+            var allCountries = await repository.GetById(10);
 
-            var countryById = repository.GetById(1);
-
-            Assert.AreEqual(1, countryById.Id);
+            Assert.AreEqual(5, allCountries.Count());
         }
     }
 }

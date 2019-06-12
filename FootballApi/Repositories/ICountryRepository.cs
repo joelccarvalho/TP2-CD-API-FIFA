@@ -8,7 +8,7 @@ namespace FootballApi.Repositories
 {
     public interface ICountryRepository {
         Task<IEnumerable<Country>> GetAll();
-        Country GetById(int id);
+        Task<IEnumerable<Country>> GetById(int id);
         void Add(Country product);
     }
 }

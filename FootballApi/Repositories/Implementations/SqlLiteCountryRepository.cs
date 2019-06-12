@@ -15,7 +15,7 @@ namespace FootballApi.Repositories.Implementations
 
         public async Task<IEnumerable<Country>> GetAll()
         {
-            var listOfCountries = new List<Country>();
+            var listOfCountries   = new List<Country>();
             using (var connection = SqlLite.GetConnection()) {
                 await connection.OpenAsync();
 
@@ -41,33 +41,33 @@ namespace FootballApi.Repositories.Implementations
             return listOfCountries;
         }
 
-        public Country GetById(int id)
+        public async Task<IEnumerable<Country>> GetById(int id)
         {
+            var listOfCountries   = new List<Country>();
             using (var connection = SqlLite.GetConnection()) {
-                connection.OpenAsync();
+                await connection.OpenAsync();
 
-                var selectCommand = connection.CreateCommand();
-                selectCommand.CommandText = "SELECT id, name, slug, code, pop, area FROM countries WHERE id = @id";
+                var selectCommand         = connection.CreateCommand();
+                selectCommand.CommandText = "SELECT countries.name, countries.slug, countries.code, countries.pop, countries.area FROM countries"+ 
+                " JOIN continents ON continents.id = countries.continent_id  WHERE continents.id = @id";
+                
                 selectCommand.Parameters.AddWithValue("@id", id);
 
                 using (var reader = selectCommand.ExecuteReader()) {
-                    if (reader.HasRows) {
-                        using (reader.ReadAsync()) {
-                            var country = new Country() {
-                                Id = reader.GetInt64(0),
-                                Name = reader.GetString(1),
-                                Slug = reader.GetString(2),
-                                Code = reader.GetString(3),
-                                Population = reader.GetInt64(4),
-                                Area = reader.GetInt64(5)
-                            };
-                            return country;
-                        }
-                    } else {
-                        return null;
-                    }
+                    while (await reader.ReadAsync()) {
+                        var country    = new Country() {
+                            Name       = reader.GetString(0),
+                            Slug       = reader.GetString(1),
+                            Code       = reader.GetString(2),
+                            Population = reader.GetInt64(3),
+                            Area       = reader.GetInt64(4)
+                        };
+
+                        listOfCountries.Add(country);
+                    } 
                 }
             }
+            return listOfCountries;
         }
     }
 }

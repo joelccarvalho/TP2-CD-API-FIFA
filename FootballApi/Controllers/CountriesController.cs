@@ -29,14 +29,17 @@ namespace FootballApi.Controllers
 
         // GET api/countries/{id}
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<ActionResult<IEnumerable<Country>>> Get(int id)
         {
-            var country = countryRepository.GetById(id);
-            
-            if (country != null)
-                return Ok(country);
+            var allCountries = await countryRepository.GetById(id);
+
+            // Check is empty
+            bool isEmpty     = !allCountries.Any();
+
+            if(isEmpty)
+                throw new NotFoundException("Continent ID:" + id);
             else
-                throw new NotFoundException("Country Id:" + id.ToString()); // Id not found    
+                return Ok(allCountries);  
         }
     }
 }
