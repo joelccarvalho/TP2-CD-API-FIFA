@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container list-group" style="margin-top: 20px">
+            <!-- UC 1 -->
+            <a href="/api/countries" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Lista dos países</h5>
+                <small>GET</small>
+                </div>
+                <small>/api/countries</small>
+            </a>
+            <!-- UC 2 -->
+            <a href="/api/countries?continent_id=1" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Lista dos países por continente</h5>
+                <small>GET</small>
+                </div>
+                <small>/api/countries?continent_id=1</small>
+            </a>
+            <!-- UC 3 -->
+            <a href="/api/players" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Lista dos jogadores</h5>
+                <small>GET</small>
+                </div>
+                <small>/api/players</small>
+            </a>
+            <!-- UC 4 -->
+            <a href="/api/goals" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Lista dos jogadores que marcaram golos</h5>
+                <small>GET</small>
+                </div>
+                <small>/api/goals</small>
+            </a>
+            <!-- UC 5 -->
+            <a href="/api/goals/Ronaldo" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Lista de golos de um jogador</h5>
+                <small>GET</small>
+                </div>
+                <small>/api/goals/{PLAYER_NAME}</small>
+            </a>
+            <!-- UC 6 -->
+            <a href="#" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Adicionar novo jogador à competição</h5>
+                <small>POST</small>
+                </div>
+                <small>/api/players</small>
+            </a>
+            <!-- UC 7 -->
+            <a href="#" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Atualização parcial de um jogador</h5>
+                <small>PATCH</small>
+                </div>
+                <small>/api/players/{ID}</small>
+            </a>
+            <!-- UC 8 -->
+            <a href="#" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Remover um jogador da competição</h5>
+                <small>DELETE</small>
+                </div>
+                <small>/api/players/{ID}</small>
+            </a>
+            <!-- UC 9 -->
+            <a href="/api/games" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Lista dos jogos</h5>
+                <small>GET</small>
+                </div>
+                <small>/api/games</small>
+            </a>
+            <!-- UC 10 -->
+            <a href="#" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Gerar um jogo que ainda não ocorreu</h5>
+                <small>POST</small>
+                </div>
+                <small>/api/games</small>
+            </a>
+            <!-- UC 11 -->
+            <a href="#" class="list-group-item list-group-item-action ">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Iniciar um jogo</h5>
+                <small>POST</small>
+                </div>
+                <small>/api/games/{ID}/startGame</small>
+            </a>
+            <!-- UC 12 -->
+            <a href="#" class="list-group-item list-group-item-action ">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Marcar um golo</h5>
+                    <small>POST</small>
+                    </div>
+                    <small>/api/games/{ID}/scoreGoal</small>
+                </a>
+            <!-- UC 13 -->
+            <a href="#" class="list-group-item list-group-item-action ">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Finalizar um jogo</h5>
+                    <small>POST</small>
+                    </div>
+                    <small>/api/games/{ID}/endGame</small>
+                </a>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    </body>
+</html>

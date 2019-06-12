@@ -41,7 +41,7 @@ namespace FootballApi.Repositories.Implementations
             return listOfCountries;
         }
 
-        public async Task<IEnumerable<Country>> GetById(int id)
+        public async Task<IEnumerable<Country>> GetById(int? id)
         {
             var listOfCountries   = new List<Country>();
             using (var connection = SqlLite.GetConnection()) {

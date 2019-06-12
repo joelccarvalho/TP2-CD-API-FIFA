@@ -72,6 +72,14 @@ namespace FootballApi
 
                 });
             });
+
+            // Use page .html
+            DefaultFilesOptions options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("index.html");
+
+            app.UseDefaultFiles(options);
+            app.UseStaticFiles();
             app.UseMvc();
         }
 
@@ -82,8 +90,6 @@ namespace FootballApi
             container.RegisterType<IGameRepository, SqlLiteGameRepository>();
             container.RegisterType<IPlayerRepository, SqlLitePlayerRepository>();
             container.RegisterType<IGoalRepository, SqlLiteGoalRepository>();
-
-
         }
     }
 }
